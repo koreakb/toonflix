@@ -7,12 +7,14 @@ import 'package:toonflix/widgets/episode_widget.dart';
 
 class DetailScreen extends StatefulWidget {
   final String title, thumb, id;
+
   const DetailScreen({
     super.key,
     required this.title,
     required this.thumb,
     required this.id,
   });
+
   @override
   State<DetailScreen> createState() => _DetailScreenState();
 }
@@ -66,26 +68,26 @@ class _DetailScreenState extends State<DetailScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 2,
-        backgroundColor: Colors.white,
         foregroundColor: Colors.green,
+        backgroundColor: Colors.white,
         actions: [
           IconButton(
             onPressed: onHeartTap,
             icon: Icon(
               isLiked ? Icons.favorite : Icons.favorite_outline,
             ),
-          )
+          ),
         ],
         title: Text(
           widget.title,
           style: const TextStyle(
-            fontSize: 24,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(50),
+          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 50),
           child: Column(
             children: [
               Row(
@@ -102,7 +104,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           BoxShadow(
                             blurRadius: 15,
                             offset: const Offset(10, 10),
-                            color: Colors.black.withOpacity(0.3),
+                            color: Colors.black.withOpacity(0.5),
                           )
                         ],
                       ),
@@ -112,7 +114,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 ],
               ),
               const SizedBox(
-                height: 25,
+                height: 30,
               ),
               FutureBuilder(
                 future: webtoon,
@@ -123,19 +125,23 @@ class _DetailScreenState extends State<DetailScreen> {
                       children: [
                         Text(
                           snapshot.data!.about,
-                          style: const TextStyle(fontSize: 16),
+                          style: const TextStyle(
+                            fontSize: 16,
+                          ),
                         ),
                         const SizedBox(
                           height: 15,
                         ),
                         Text(
-                          '${snapshot.data!.genre} / ${snapshot.data!.age}',
-                          style: const TextStyle(fontSize: 16),
+                          ('${snapshot.data!.genre} / ${snapshot.data!.age}'),
+                          style: const TextStyle(
+                            fontSize: 16,
+                          ),
                         ),
                       ],
                     );
                   }
-                  return const Text("...");
+                  return const Text('...');
                 },
               ),
               const SizedBox(
